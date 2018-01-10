@@ -11,4 +11,6 @@
 	<context:component-scan base-package="com.syj.ssm.component;com.syj.ssm.service;com.syj.ssm.aop.service"/>
 	
     <context:property-placeholder location="classpath:*.properties" />
+    
+    <import resource="spring/**/*.xml" />
 </beans>
