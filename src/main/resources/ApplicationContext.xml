@@ -5,12 +5,13 @@
            http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
            http://www.springframework.org/schema/context
            http://www.springframework.org/schema/context/spring-context-2.5.xsd">
-    <!--
-    	spring 负责扫描  @Component， @Service，@Repository 以及service的切面
-    --> 
-	<context:component-scan base-package="com.syj.ssm.component;com.syj.ssm.service;com.syj.ssm.aop.service"/>
-	
-    <context:property-placeholder location="classpath:*.properties" />
-    
-    <import resource="spring/**/*.xml" />
+
+	<!-- spring 负责扫描 @Component， @Service，@Repository 以及service的切面 -->
+	<context:component-scan base-package="com.syj.ssm.component;com.syj.ssm.service;com.syj.ssm.aop.service" />
+
+	<!-- 虽然properties文件全部在env文件夹下面，但是通过maven打包，指定了profile，配置文件会默认加载到classpath的位置 -->
+	<context:property-placeholder location="classpath:*.properties" />
+
+	<!-- 将配置分成多个子文件，通过import批量引用，方便维护 -->
+	<import resource="spring/**/*.xml" />
 </beans>
