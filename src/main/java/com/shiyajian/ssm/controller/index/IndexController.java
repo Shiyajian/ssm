@@ -1,13 +1,16 @@
 package com.shiyajian.ssm.controller.index;
 
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@RequestMapping
-public class IndexController {
+import com.shiyajian.ssm.controller.BaseController;
 
-    @GetMapping(value="index")
+@RequestMapping
+@Controller
+public class IndexController extends BaseController {
+
+    @RequestMapping(value="index")
     public String index(){
-        return "";
+        return "index";
     }
 }
