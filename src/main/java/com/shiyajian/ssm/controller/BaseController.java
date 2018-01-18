@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.shiyajian.ssm.entity.common.CurrtUser;
+import com.shiyajian.ssm.exception.NologinException;
 
 public class BaseController {
 
@@ -15,14 +16,23 @@ public class BaseController {
     protected HttpSession session;
 
     protected String getCurrtUserName() {
-        return "";
+        checkUserLogin();
+        return ((CurrtUser) session.getAttribute(CurrtUser.KEY)).getUserName();
     }
 
     protected String getCurrtUserId() {
-        return "";
+        checkUserLogin();
+        return ((CurrtUser) session.getAttribute(CurrtUser.KEY)).getUserId();
     }
 
     protected CurrtUser getCurrtUser() {
-        return (CurrtUser)session.getAttribute(CurrtUser.KEY);
+        checkUserLogin();
+        return (CurrtUser) session.getAttribute(CurrtUser.KEY);
+    }
+
+    private void checkUserLogin() {
+        if (null == session.getAttribute(CurrtUser.KEY)) {
+            throw new NologinException("用户没有登录，session信息为空");
+        }
     }
 }
