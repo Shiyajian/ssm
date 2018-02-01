@@ -17,16 +17,20 @@ public class BaseController {
 
     protected String getCurrtUserName() {
         checkUserLogin();
-        return ((CurrtUser) session.getAttribute(CurrtUser.KEY)).getUserName();
+        return getUser().getUserName();
     }
 
     protected String getCurrtUserId() {
         checkUserLogin();
-        return ((CurrtUser) session.getAttribute(CurrtUser.KEY)).getUserId();
+        return getUser().getUserId();
     }
 
     protected CurrtUser getCurrtUser() {
         checkUserLogin();
+        return getUser();
+    }
+
+    private CurrtUser getUser() {
         return (CurrtUser) session.getAttribute(CurrtUser.KEY);
     }
 
